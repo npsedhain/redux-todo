@@ -2,7 +2,12 @@
   "name": "nadeem-app",
   "main": "nadeem-app.js",
   "dependencies": {
-    "@polymer/polymer": "^3.0.0"
+    "@polymer/paper-button": "^3.0.1",
+    "@polymer/paper-checkbox": "^3.1.0",
+    "@polymer/paper-input": "^3.0.2",
+    "@polymer/paper-radio-button": "^3.0.1",
+    "@polymer/polymer": "^3.0.0",
+    "lit-element": "^2.2.1"
   },
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.1.0",
