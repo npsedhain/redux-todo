@@ -21,7 +21,16 @@ class NadeemApp extends LitElement {
 
   constructor() {
     super();
-    this.todos = [];
+    this.todos = [
+      {
+        task: "Meet friends",
+        completed: true,
+      },
+      {
+        task: "Make penguines fly",
+        completed: false,
+      },
+    ];
     this.filter = VisibilityFilters.SHOW_ALL;
     this.task = "";
   }
@@ -46,6 +55,12 @@ class NadeemApp extends LitElement {
     }
     this.task = e.target.value;
   }
+
+  handleStatusChange(targetTodo) {
+    this.todos = this.todos.map(todo =>
+      todo === targetTodo ? { ...todo, completed: !todo.completed } : todo
+    );
+  }
   render() {
     return html`
       <div class="input-layout">
@@ -64,6 +79,18 @@ class NadeemApp extends LitElement {
           @click="${this.addTodo}"
           >raised</paper-button
         >
+      </div>
+
+      <div class="todo-list">
+        ${this.todos.map(todo => {
+          return html`
+            <paper-checkbox
+              ?checked="${todo.completed}"
+              @click="${() => this.handleStatusChange(todo)}"
+            ></paper-checkbox>
+            ${todo.task}
+          `;
+        })}
       </div>
     `;
   }
