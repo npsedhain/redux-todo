@@ -98,9 +98,7 @@ class NadeemApp extends LitElement {
         text-align: center;
         color: #555;
       }
-      .input-layout {
-        background: grey;
-      }
+  
 
       .input-layout .paperInput {
         width: 80%;
@@ -112,6 +110,8 @@ class NadeemApp extends LitElement {
         height: 35px;
         color: #555;
         outline: none;
+        border-radius: 3px 0 0 3px;
+        border:1px solid rgba(0, 0, 0, 0.3);
       }
       paper-button.green {
         background-color: var(--paper-green-500);
@@ -122,7 +122,7 @@ class NadeemApp extends LitElement {
         height: 35px;
         min-width: 20%;
         box-sizing: border-box;
-        border-radius: 0;
+        border-radius: 0px 3px 3px 0;
         box-shadow: none;
         font-size: 13px;
       }
@@ -174,6 +174,13 @@ class NadeemApp extends LitElement {
         margin: 10px auto;
         background: #800000;
         color: #fff;
+      }
+
+      @media only screen and (min-width: 768px) {
+        :host {
+          width: 60%;
+          margin: 5% auto;
+        }
       }
     `;
   }
