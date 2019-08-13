@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes"
+    />
+
+    <title>thuse</title>
+    <meta name="description" content="thuse description" />
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <script
+      type="module"
+      src="/src/components/TodoView.js"
+      crossorigin
+    ></script>
+    <script>
+      // HACK(keanulee): The Redux package assumes `process` exists - mock it here before
+      // the module is loaded.
+      window.process = {
+        env: {
+          NODE_ENV: "production"
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <todo-view></todo-view>
+  </body>
+</html>
