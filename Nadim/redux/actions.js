@@ -1,5 +1,3 @@
-// import { nanoid } from "nanoid";
-
 export const ADD_TODO = "ADD_TODO";
 export const UPDATE_TODO_STATUS = "UPDATE_TODO_STATUS";
 export const UPDATE_FILTER = "UPDATE_FILTER";
@@ -35,5 +33,12 @@ export const updateFilter = filter => {
 export const clearCompleted = () => {
   return {
     type: CLEAR_COMPLETED,
+  };
+};
+
+export const deleteTodo = todo => {
+  return {
+    type: DELETE_TODO,
+    todo,
   };
 };

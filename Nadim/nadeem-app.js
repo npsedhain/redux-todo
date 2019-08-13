@@ -13,7 +13,8 @@ import {
   addTodo,
   updateFilter,
   updateTodoStatus,
-  clearCompleted
+  clearCompleted,
+  deleteTodo
 } from "./redux/actions";
 
 class NadeemApp extends connect(store)(LitElement) {
@@ -81,6 +82,10 @@ class NadeemApp extends connect(store)(LitElement) {
     // this.todos = this.todos.filter(todo => !todo.completed);
     store.dispatch(clearCompleted());
   }
+
+  deleteTodoItem(targetTodo) {
+    store.dispatch(deleteTodo(targetTodo));
+  }
   static get styles() {
     return css`
       :host {
@@ -88,9 +93,11 @@ class NadeemApp extends connect(store)(LitElement) {
         background: #ffffff;
         width: 90%;
         margin: 10% auto;
+        box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.3); 
       }
       .todo-layout {
         padding: 10px 30px;
+        border-radius: 3px;
       }
 
       h1.topic {
@@ -173,7 +180,16 @@ class NadeemApp extends connect(store)(LitElement) {
         background: #800000;
         color: #fff;
       }
-
+      iron-icon.delete {
+        float: right;
+        width: 18px;
+        color: #555;
+      }
+      iron-icon.delete:hover {
+        color: #800000;
+        cursor: pointer;
+        transition: .3s;
+      }
       @media only screen and (min-width: 768px) {
         :host {
           width: 60%;
@@ -218,7 +234,9 @@ class NadeemApp extends connect(store)(LitElement) {
                 <span class="${todo.completed ? "completed" : "remaining"}"
                   >${todo.task}</span
                 >
+                <iron-icon icon = "delete" @click = "${() => this.deleteTodoItem(todo)}" class = "delete"></iron-icon>
                 <br />
+                
               </div>
             `;
           })}

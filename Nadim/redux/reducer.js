@@ -3,6 +3,7 @@ import {
   UPDATE_FILTER,
   CLEAR_COMPLETED,
   UPDATE_TODO_STATUS,
+  DELETE_TODO,
 } from "./actions";
 
 export const VisibilityFilters = {
@@ -42,6 +43,11 @@ export const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         todos: state.todos.filter(todo => !todo.completed),
+      };
+    case DELETE_TODO:
+      return {
+        ...state,
+        todos: state.todos.filter(todo => todo !== action.todo),
       };
     default:
       return state;
