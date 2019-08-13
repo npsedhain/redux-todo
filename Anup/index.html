@@ -16,6 +16,13 @@
     <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 
     <script type="module" src="/src/todo-app/todo-app.js" crossorigin></script>
+    <script>
+      window.process = {
+        env: {
+          NODE_ENV: "production"
+        }
+      };
+    </script>
   </head>
 
   <body>
