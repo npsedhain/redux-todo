@@ -10,7 +10,12 @@
     "@polymer/paper-radio-button": "^3.0.1",
     "@polymer/paper-radio-group": "^3.0.1",
     "@polymer/polymer": "^3.0.0",
-    "lit-element": "^2.2.1"
+    "lit-element": "^2.2.1",
+    "nanoid": "^2.0.3",
+    "pwa-helpers": "^0.9.1",
+    "redux": "^4.0.4",
+    "redux-persist": "^5.10.0",
+    "reselect": "^4.0.0"
   },
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.1.0",

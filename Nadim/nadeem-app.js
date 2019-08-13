@@ -6,14 +6,17 @@ import "@polymer/paper-radio-group/paper-radio-group.js";
 import "@polymer/paper-radio-button/paper-radio-button.js";
 import "@polymer/iron-icon/iron-icon.js";
 import "@polymer/iron-icons/iron-icons.js";
+import { VisibilityFilters } from "./redux/reducer";
+import { connect } from "pwa-helpers";
+import { store } from "./redux/store";
+import {
+  addTodo,
+  updateFilter,
+  updateTodoStatus,
+  clearCompleted
+} from "./redux/actions";
 
-const VisibilityFilters = {
-  SHOW_ALL: "All",
-  SHOW_ACTIVE: "Active",
-  SHOW_COMPLETED: "Completed",
-};
-
-class NadeemApp extends LitElement {
+class NadeemApp extends connect(store)(LitElement) {
   static get properties() {
     return {
       todos: Array,
@@ -21,34 +24,27 @@ class NadeemApp extends LitElement {
       task: String,
     };
   }
-
+  // callback function from connect
+  stateChanged(state) {
+    this.todos = state.todos;
+    this.filter = state.filter;
+  }
   constructor() {
     super();
-    this.todos = [
-      {
-        task: "Meet friends",
-        completed: true,
-      },
-      {
-        task: "Make penguines fly",
-        completed: false,
-      },
-    ];
-    this.filter = VisibilityFilters.SHOW_ALL;
-    this.task = "";
   }
 
   addTodo(e) {
     if (this.task) {
-      this.todos = [
-        ...this.todos,
-        {
-          task: this.task,
-          completed: false,
-        },
-      ];
+      // this.todos = [
+      //   ...this.todos,
+      //   {
+      //     task: this.task,
+      //     completed: false,
+      //   },
+      // ];
+
+      store.dispatch(addTodo(this.task));
       this.task = "";
-      console.log(this.todos);
     }
   }
 
@@ -60,12 +56,14 @@ class NadeemApp extends LitElement {
   }
 
   handleStatusChange(targetTodo) {
-    this.todos = this.todos.map(todo =>
-      todo === targetTodo ? { ...todo, completed: !todo.completed } : todo
-    );
+    // this.todos = this.todos.map(todo =>
+    //   todo === targetTodo ? { ...todo, completed: !todo.completed } : todo
+    // );
+    store.dispatch(updateTodoStatus(targetTodo));
   }
   changeFilter(e) {
-    this.filter = e.target.name;
+    // this.filter = e.target.name;
+    store.dispatch(updateFilter(e.target.name));
   }
 
   applyFilter(todos) {
@@ -80,7 +78,8 @@ class NadeemApp extends LitElement {
   }
 
   clearCompleted() {
-    this.todos = this.todos.filter(todo => !todo.completed);
+    // this.todos = this.todos.filter(todo => !todo.completed);
+    store.dispatch(clearCompleted());
   }
   static get styles() {
     return css`
@@ -98,7 +97,6 @@ class NadeemApp extends LitElement {
         text-align: center;
         color: #555;
       }
-  
 
       .input-layout .paperInput {
         width: 80%;
@@ -111,7 +109,7 @@ class NadeemApp extends LitElement {
         color: #555;
         outline: none;
         border-radius: 3px 0 0 3px;
-        border:1px solid rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(0, 0, 0, 0.3);
       }
       paper-button.green {
         background-color: var(--paper-green-500);
@@ -190,7 +188,7 @@ class NadeemApp extends LitElement {
       <div class="todo-layout">
         <h1 class="topic">Todo App</h1>
         <div class="input-layout clearfix">
-         <input .value="${this.task}"
+         <input .value="${this.task || ""}"
           @click="${this.addTodo}"
           @keyup="${this.handleChange}"
           class="paperInput"
