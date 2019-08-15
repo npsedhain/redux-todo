@@ -10,6 +10,7 @@
     "@polymer/paper-radio-button": "^3.0.1",
     "@polymer/paper-radio-group": "^3.0.1",
     "@polymer/polymer": "^3.0.0",
+    "@vaadin/vaadin-rich-text-editor": "^1.0.4",
     "lit-element": "^2.2.1",
     "nanoid": "^2.0.3",
     "pwa-helpers": "^0.9.1",
