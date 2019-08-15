@@ -10,8 +10,6 @@ class CommentCard extends LitElement {
       comment: String,
       editor: String,
       iframe: String,
-      range: Object,
-      selected: Object,
       bold: Boolean,
       italics: Boolean,
     };
@@ -20,7 +18,7 @@ class CommentCard extends LitElement {
     return css`
       :host {
         display: inline-block;
-        width: 400px;
+        width: 350px;s
       }
       * {
         box-sizing: border-box;
@@ -94,6 +92,8 @@ class CommentCard extends LitElement {
         background: #fff;
         width: 100%;
         border: 1px solid rgba(211, 211, 211, 0.4);
+
+        
       }
 
       .active {
@@ -114,6 +114,7 @@ class CommentCard extends LitElement {
       this.editor = this.iframe.contentDocument;
       this.editor.designMode = "on";
       this.editor.body.style.fontFamily = "Roboto, sans-serif";
+      
       this.editor.addEventListener("keydown", e => {
         if (e.keyCode === 66 && e.ctrlKey) {
           this.bold = !this.bold;
