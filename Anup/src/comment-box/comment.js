@@ -3,7 +3,6 @@ import "@polymer/paper-button/paper-button.js";
 import "@polymer/paper-input/paper-textarea";
 import "@polymer/iron-icon/iron-icon.js";
 import "@polymer/iron-icons/iron-icons.js";
-
 class CommentCard extends LitElement {
   static get properties() {
     return {
@@ -109,20 +108,20 @@ class CommentCard extends LitElement {
     this.comment = "";
     this.bold = false;
     this.italics = false;
-    window.addEventListener("load", () => {
-      this.iframe = this.shadowRoot.getElementById("theWYSIWYG");
-      this.editor = this.iframe.contentDocument;
-      this.editor.designMode = "on";
-      this.editor.body.style.fontFamily = "Roboto, sans-serif";
+  }
+  firstUpdated() {
+    this.iframe = this.shadowRoot.getElementById("theWYSIWYG");
+    this.editor = this.iframe.contentDocument;
+    this.editor.designMode = "on";
+    this.editor.body.style.fontFamily = "Roboto, sans-serif";
 
-      this.editor.addEventListener("keydown", e => {
-        if (e.keyCode === 66 && e.ctrlKey) {
-          this.bold = !this.bold;
-        }
-        if (e.keyCode === 73 && e.ctrlKey) {
-          this.italics = !this.italics;
-        }
-      });
+    this.editor.addEventListener("keydown", e => {
+      if (e.keyCode === 66 && e.ctrlKey) {
+        this.bold = !this.bold;
+      }
+      if (e.keyCode === 73 && e.ctrlKey) {
+        this.italics = !this.italics;
+      }
     });
   }
   saveComment() {
