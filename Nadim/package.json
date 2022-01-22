@@ -12,7 +12,7 @@
     "@polymer/polymer": "^3.0.0",
     "@vaadin/vaadin-rich-text-editor": "^1.0.4",
     "lit-element": "^2.2.1",
-    "nanoid": "^2.0.3",
+    "nanoid": "^3.1.31",
     "pwa-helpers": "^0.9.1",
     "redux": "^4.0.4",
     "redux-persist": "^5.10.0",
